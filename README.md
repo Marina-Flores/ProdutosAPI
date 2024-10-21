@@ -1,4 +1,4 @@
-# ProdutosRestAPI
+# ProdutosAPI
 
 Uma API simples em .NET Core para gerenciar uma coleção de filmes. Desenvolvido com o GitHub Flow.
 
