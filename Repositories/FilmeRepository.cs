@@ -24,5 +24,12 @@ namespace ProdutosAPI.Repositories
 
         public Task<IEnumerable<Filme>> GetAllFilmes()
             => Task.FromResult<IEnumerable<Filme>>(_filmes);
+
+        public Task AddFilme(Filme filme)
+        {
+            filme.Id = _filmes.Count + 1;
+            _filmes.Add(filme);
+            return Task.CompletedTask;
+        }
     }
 }

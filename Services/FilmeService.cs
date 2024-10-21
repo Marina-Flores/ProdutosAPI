@@ -9,5 +9,8 @@ namespace ProdutosAPI.Services
 
         public async Task<IEnumerable<Filme>> GetAllFilmes()
             => await _filmeRepository.GetAllFilmes();
+
+        public async Task AddFilme(Filme filme)
+          => await _filmeRepository.AddFilme(filme);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProdutosAPI.Entities;
 using ProdutosAPI.Services;
 
 namespace ProdutosAPI.Controllers
@@ -18,6 +19,17 @@ namespace ProdutosAPI.Controllers
                 return NoContent();
 
             return Ok(filmes);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Filme>> AddFilme(Filme filme)
+        {
+            if (filme == null)
+                return BadRequest();
+
+            await _filmeService.AddFilme(filme);
+
+            return Created();
         }
     }
 }
