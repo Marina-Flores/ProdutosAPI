@@ -1,0 +1,42 @@
+# Arquivos de compilação
+bin/
+obj/
+
+# Arquivos de usuário
+*.user
+*.suo
+*.userprefs
+
+# Arquivos de configuração do Visual Studio
+.vs/
+*.sln.docstates
+
+# Pacotes NuGet
+*.nupkg
+*.snupkg
+packages/
+*.nuspec
+
+# Arquivos de backup do Visual Studio
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+
+# Arquivos de configuração do Rider
+.idea/
+
+# Arquivos temporários
+*.log
+*.tmp
+*.temp
+*.tlog
+*.lastcodeanalysis
+
+# Outras extensões que você pode querer ignorar
+*.dll
+*.exe
+*.pdb
+*.mdb
+*.cache
+*.vspscc
+*.vssscc
