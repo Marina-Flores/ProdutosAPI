@@ -5,7 +5,9 @@ Uma API simples em .NET Core para gerenciar uma coleção de filmes. Desenvolvid
 ## Sumário
 
 - [Instalação](#instalação)
-- [Como Usar](#como-usar)
+- [Utilização da API](#utilização-da-api)
+- [Documentação da API](#documentação-da-api)
+- [GitFlow](#gitflow)
 
 ## Instalação
 
@@ -32,10 +34,12 @@ A API pode ser acessada através de URLs como `http://localhost:<port>/api/filme
 - **GET /api/filmes**: Retorna todos os filmes.
 - **POST /api/filmes**: Adiciona um novo filme.
 
-## Documentação da API (Swagger)
+## Documentação da API
 
 Este projeto inclui a documentação da API usando Swagger. Para acessá-la, execute o projeto e navegue até `http://localhost:<port>/swagger` em seu navegador.
 
+## GitFlow
 
+Escolhi trabalhar com o GitFlow para o desenvolvimento da API porque ele oferece uma estrutura clara e organizada para gerenciar o código. Com branches específicas para desenvolvimento (como develop), novas funcionalidades (feature), lançamentos (release) e correções rápidas (hotfix), fica mais fácil colaborar com a equipe. Isso garante que novas funcionalidades possam ser integradas sem interromper o trabalho em andamento, o que é muito importante em um projeto. Além disso, essa abordagem ajuda a manter o código mais organizado e a controlar melhor as versões.
 
 
