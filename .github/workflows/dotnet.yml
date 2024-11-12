@@ -1,0 +1,43 @@
+name: .NET CI
+
+# Fluxo de trabalho para eventos de push
+on:
+  push:
+    branches: 
+      - "development"  
+
+  # Fluxo de trabalho para eventos de pull request
+  pull_request:
+    branches:
+      - "main"  
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    # Passo 1: Clonar o repositório
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Passo 2: Trocar para uma branch específica (pode ser uma branch alternativa, ex: "dev")
+    - name: Checkout a specific branch
+      run: git checkout main
+
+    # Passo 3: Instalar o compilador/interpretador .NET
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x  # Instalar versão 8 do .NET
+
+    # Passo 4: Instalar as dependências do projeto
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # Passo 5: Compilar o projeto
+    - name: Build project
+      run: dotnet build --no-restore
+
+    # Passo 6: Executar os testes
+    - name: Run tests
+      run: dotnet test --no-build --verbosity normal
