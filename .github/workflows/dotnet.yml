@@ -22,7 +22,7 @@ jobs:
 
     # Passo 2: Trocar para uma branch específica (pode ser uma branch alternativa, ex: "dev")
     - name: Checkout a specific branch
-      run: git checkout main
+      run: git checkout development
 
     # Passo 3: Instalar o compilador/interpretador .NET
     - name: Setup .NET
