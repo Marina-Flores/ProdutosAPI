@@ -37,11 +37,14 @@ jobs:
     # Passo 5: Instalar as dependências do projeto
     - name: Restore dependencies
       run: dotnet restore
+      working-directory: ./ProdutosAPI
 
     # Passo 6: Compilar o projeto
     - name: Build project
       run: dotnet build --no-restore
+      working-directory: ./ProdutosAPI
 
     # Passo 7: Executar os testes
     - name: Run tests
       run: dotnet test --no-build --verbosity normal
+      working-directory: ./ProdutosAPI.Teste
