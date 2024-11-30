@@ -31,5 +31,21 @@ namespace ProdutosAPI.Repositories
             _filmes.Add(filme);
             return Task.CompletedTask;
         }
+        
+        public Task<Filme?> GetFilmeById(int id)
+        {
+            var filme = _filmes.FirstOrDefault(f => f.Id == id);
+            return Task.FromResult(filme);
+        }
+
+        public Task RemoveFilme(int id)
+        {
+            var filme = _filmes.FirstOrDefault(f => f.Id == id);
+            if (filme != null)
+            {
+                _filmes.Remove(filme);
+            }
+            return Task.CompletedTask;
+        }
     }
 }

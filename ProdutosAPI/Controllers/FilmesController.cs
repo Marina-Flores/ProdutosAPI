@@ -31,5 +31,19 @@ namespace ProdutosAPI.Controllers
 
             return Created();
         }
+      
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteFilme(int id)
+        {
+            var filme = await _filmeService.GetFilmeById(id);  
+
+            if (filme == null)  
+            {
+                return NotFound(); 
+            }
+
+            await _filmeService.RemoveFilme(id); 
+            return NoContent();  
+        }
     }
 }
