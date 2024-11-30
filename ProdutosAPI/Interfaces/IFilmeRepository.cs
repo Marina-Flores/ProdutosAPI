@@ -6,5 +6,7 @@ namespace ProdutosAPI.Interfaces
     {
         Task<IEnumerable<Filme>> GetAllFilmes();
         Task AddFilme(Filme filme);
+        Task<Filme?> GetFilmeById(int id); 
+        Task RemoveFilme(int id); 
     }
 }

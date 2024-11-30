@@ -73,4 +73,34 @@ public class FilmesControllerTest
 
         Assert.IsType<BadRequestResult>(resultado.Result);
     }
+    
+    [Fact]
+    public async Task DeleteFilme_ReturnsNoContent_WhenFilmeExists()
+    {
+        var filmeId = 1;
+        var filme = new Filme(filmeId, "Harry Potter e a Pedra Filosofal", "Chris Columbus", 2001, "Fantasia", 59.99m);
+
+        _filmeServiceMock.Setup(service => service.GetFilmeById(filmeId))
+            .ReturnsAsync(filme);
+
+        _filmeRepositoryMock.Setup(repo => repo.RemoveFilme(filmeId))
+            .Returns(Task.CompletedTask);
+
+        var resultado = await _controller.DeleteFilme(filmeId);
+
+        Assert.IsType<NoContentResult>(resultado);  
+    }
+    
+    [Fact]
+    public async Task DeleteFilme_ReturnsNotFound_WhenFilmeDoesNotExist()
+    {
+        var filmeId = 999; 
+        
+        _filmeServiceMock.Setup(service => service.GetFilmeById(filmeId))
+            .ReturnsAsync((Filme?)null); 
+
+        var resultado = await _controller.DeleteFilme(filmeId); 
+
+        Assert.IsType<NotFoundResult>(resultado);  
+    }
 }
