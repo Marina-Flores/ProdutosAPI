@@ -65,6 +65,16 @@ jobs:
       run: dotnet restore
       working-directory: ./ProdutosAPI
 
+    # Passo 6: Restaurar dependências para o projeto de testes
+    - name: Restore dependencies for ProdutosAPI.Teste
+      run: dotnet restore
+      working-directory: ./ProdutosAPI.Teste
+    
+    # Passo 7: Construir o projeto de testes
+    - name: Build ProdutosAPI.Teste project
+      run: dotnet build --no-restore
+      working-directory: ./ProdutosAPI.Teste
+  
     # Passo 4: Executar testes (unitários e integração)
     - name: Run unit and integration tests
       run: dotnet test --no-build --verbosity normal
