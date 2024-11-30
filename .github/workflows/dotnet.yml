@@ -4,12 +4,13 @@ name: .NET CI
 on:
   push:
     branches:
-      - "development"  
+      - "development"
+      - "main"  
 
   # Fluxo de trabalho para eventos de pull request
   pull_request:
     branches:
-      - "main"  
+      - "main"
 
 jobs:
   build:
@@ -32,7 +33,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x  # Instalar versão 8 do .NET
+        dotnet-version: 9.0.x  # Instalar versão 8 do .NET
 
     # Passo 5: Instalar as dependências do projeto
     - name: Restore dependencies
@@ -44,7 +45,32 @@ jobs:
       run: dotnet build --no-restore
       working-directory: ./ProdutosAPI
 
-    # Passo 7: Executar os testes
-    - name: Run tests
+  quality:
+    runs-on: windows-latest
+    needs: build  
+
+    steps:
+    # Passo 1: Clonar o repositório
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Passo 2: Instalar o compilador/interpretador .NET
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x  # Instalar versão 8 do .NET
+
+    # Passo 3: Restaurar dependências
+    - name: Restore dependencies
+      run: dotnet restore
+      working-directory: ./ProdutosAPI
+
+    # Passo 4: Executar testes (unitários e integração)
+    - name: Run unit and integration tests
       run: dotnet test --no-build --verbosity normal
+      working-directory: ../ProdutosAPI.Teste
+
+    # Passo 5: Verificação de cobertura de código
+    - name: Run code coverage
+      run: dotnet test --no-build --collect:"Code Coverage"
       working-directory: ./ProdutosAPI.Teste
