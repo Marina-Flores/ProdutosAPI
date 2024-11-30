@@ -68,7 +68,7 @@ jobs:
     # Passo 4: Executar testes (unitários e integração)
     - name: Run unit and integration tests
       run: dotnet test --no-build --verbosity normal
-      working-directory: ../ProdutosAPI.Teste
+      working-directory: ./ProdutosAPI.Teste
 
     # Passo 5: Verificação de cobertura de código
     - name: Run code coverage
